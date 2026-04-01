@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: blog-app
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:blog_db}
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:postgres}
+
+server:
+  port: 8080
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+jwt:
+  secret: 14e493e2c9aa4a805f63c57895e3332d134794af68d624f48c99c04a3d757444
+  access-token-expiration: 900000        # 15 mins
+  refresh-token-expiration: 604800000    # 7 days
