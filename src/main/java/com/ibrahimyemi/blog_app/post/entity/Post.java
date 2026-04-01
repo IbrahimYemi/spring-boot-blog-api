@@ -3,6 +3,8 @@ package com.ibrahimyemi.blog_app.post.entity;
 import com.ibrahimyemi.blog_app.user.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -28,5 +30,9 @@ public class Post {
     @JoinColumn(name = "user_id")
     private User author;
 
+    @CreationTimestamp
     private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
 }

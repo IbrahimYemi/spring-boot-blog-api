@@ -1,6 +1,6 @@
 package com.ibrahimyemi.blog_app.security.jwt;
 
-import com.ibrahimyemi.blog_app.common.ApiResponse;
+import com.ibrahimyemi.blog_app.common.response.ApiResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;

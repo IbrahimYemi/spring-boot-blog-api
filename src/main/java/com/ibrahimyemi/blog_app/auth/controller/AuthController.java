@@ -1,6 +1,6 @@
 package com.ibrahimyemi.blog_app.auth.controller;
 
-import com.ibrahimyemi.blog_app.common.ApiResponse;
+import com.ibrahimyemi.blog_app.common.response.ApiResponse;
 import com.ibrahimyemi.blog_app.common.response.AuthResponse;
 import com.ibrahimyemi.blog_app.auth.dto.LoginRequest;
 import com.ibrahimyemi.blog_app.auth.dto.RegisterRequest;

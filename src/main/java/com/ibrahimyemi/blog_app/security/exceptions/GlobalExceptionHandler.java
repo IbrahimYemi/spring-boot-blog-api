@@ -1,13 +1,12 @@
 package com.ibrahimyemi.blog_app.security.exceptions;
 
-import com.ibrahimyemi.blog_app.common.ApiResponse;
+import com.ibrahimyemi.blog_app.common.response.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 

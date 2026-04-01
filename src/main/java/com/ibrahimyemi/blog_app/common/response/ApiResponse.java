@@ -1,4 +1,4 @@
-package com.ibrahimyemi.blog_app.common;
+package com.ibrahimyemi.blog_app.common.response;
 
 import lombok.Builder;
 import lombok.Data;
