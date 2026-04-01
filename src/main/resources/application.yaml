@@ -1,3 +1,6 @@
+server:
+  port: 8080
+
 spring:
   application:
     name: blog-app
@@ -6,16 +9,13 @@ spring:
     username: ${POSTGRES_USER:postgres}
     password: ${POSTGRES_PASSWORD:postgres}
 
-server:
-  port: 8080
-
   jpa:
     hibernate:
       ddl-auto: ${JPA_DDL_STATUS:update}
-    show-sql: true
+    show-sql: ${JPA_SHOW_SQL:true}
     properties:
       hibernate:
-        format_sql: true
+        format_sql: ${JPA_FORMAT_SQL:true}
 
 jwt:
   secret: ${JWT_SECRET:14e493e2c9aa4a805f63c57895e3332d134794af68d624f48c99c04a3d757444}
