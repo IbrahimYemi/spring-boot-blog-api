@@ -26,6 +26,8 @@ public class User {
 
     private String password;
 
+    private String avatarUrl;
+
     @Enumerated(EnumType.STRING)
     private UserRole role;
 }

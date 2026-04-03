@@ -14,5 +14,6 @@ public class PostResponse {
     private String content;
     private String authorName;
     private String authorEmail;
+    private boolean published;
     private LocalDateTime createdAt;
 }

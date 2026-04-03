@@ -32,6 +32,8 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/**").permitAll()
                         // Allow only GET requests to /api/posts/** without authentication
                         .requestMatchers(HttpMethod.GET, "/api/posts/**").permitAll()
+                        // Allow path for uploads
+                        .requestMatchers(HttpMethod.GET, "/uploads/**").permitAll()
                         // All other endpoints require authentication
                         .anyRequest().authenticated()
                 )

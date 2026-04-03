@@ -1,5 +1,6 @@
 server:
   port: 8080
+  base-url:  http://localhost:8080
 
 spring:
   application:
@@ -8,6 +9,11 @@ spring:
     url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:blog_db}
     username: ${POSTGRES_USER:postgres}
     password: ${POSTGRES_PASSWORD:postgres}
+
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
 
   jpa:
     hibernate:
@@ -21,3 +27,8 @@ jwt:
   secret: ${JWT_SECRET:14e493e2c9aa4a805f63c57895e3332d134794af68d624f48c99c04a3d757444}
   access-token-expiration: ${JWT_ACCESS_TOKEN_EXPIRATION:900000}        # 15 mins
   refresh-token-expiration: ${JWT_REFRESH_TOKEN_EXPIRATION:604800000}    # 7 days
+
+file:
+  upload-dir: uploads/avatars
+  upload-path: ${LOCAL_FILE_DIR:.../spring-blog-app/uploads}
+  upload-channel: local

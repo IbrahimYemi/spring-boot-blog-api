@@ -10,4 +10,13 @@ public class PostRequest {
 
     @NotBlank
     private String content;
+
+    @NotBlank
+    private String excerpt;
+
+    private boolean published;
+
+    public boolean getPublished() {
+        return published;
+    }
 }

@@ -30,9 +30,18 @@ public class Post {
     @JoinColumn(name = "user_id")
     private User author;
 
+    private String excerpt;
+
+    @Column(nullable = false)
+    private boolean published = false;
+
     @CreationTimestamp
     private LocalDateTime createdAt;
 
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+    public boolean getPublished() {
+        return published;
+    }
 }

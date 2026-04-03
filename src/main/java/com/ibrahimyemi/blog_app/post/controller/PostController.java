@@ -23,18 +23,6 @@ public class PostController {
 
     private final PostService postService;
 
-    @PostMapping
-    public ResponseEntity<ApiResponse<PostResponse>> createPost(
-            @Valid @RequestBody PostRequest request,
-            @AuthenticationPrincipal AppUserDetails userDetails) {
-
-        User user = userDetails.getUser();
-        PostResponse post = postService.createPost(request, user);
-
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(ApiResponse.success(post, "Post created successfully"));
-    }
-
     @GetMapping
     public ResponseEntity<ApiResponse<Page<PostResponse>>> getPosts(
             @RequestParam(defaultValue = "0") int page,
@@ -47,7 +35,19 @@ public class PostController {
         );
     }
 
-    @GetMapping("/author/{authorId}")
+    @PostMapping
+    public ResponseEntity<ApiResponse<PostResponse>> createPost(
+            @Valid @RequestBody PostRequest request,
+            @AuthenticationPrincipal AppUserDetails userDetails) {
+
+        User user = userDetails.getUser();
+        PostResponse post = postService.createPost(request, user);
+
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(ApiResponse.success(post, "Post created successfully"));
+    }
+
+    @GetMapping("/author")
     public ResponseEntity<ApiResponse<Page<PostResponse>>> getPostsByAuthor(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size,
