@@ -1,47 +1,52 @@
-# Spring Boot Blog API
+# 🌱 Spring Boot Blog API
 
-A production-grade **RESTful API** built with **Spring Boot**, designed with a strong emphasis on **clean architecture, SOLID principles, and scalability**. The system implements secure **JWT-based authentication with refresh tokens** and robust **role-based access control (USER/ADMIN)**, ensuring proper separation of concerns between security and business logic. It provides full **blog CRUD functionality** with strict ownership enforcement and admin override capabilities, alongside comprehensive **user profile management** (profile updates, password changes, and avatar uploads). The file upload system is architected using the **Strategy pattern**, allowing seamless extension from local storage to cloud providers (e.g., S3, Cloudinary) without modifying core logic. With DTO abstraction, global exception handling, request validation, stateless security, pagination, and standardized API responses, this project serves as a solid and extensible foundation for real-world applications.
+A **production-grade RESTful API** built with **Spring Boot**, designed with a strong emphasis on **clean architecture, SOLID principles, and scalability**.
 
----
+This project implements **secure JWT-based authentication with refresh tokens**, role-based access control (**USER/ADMIN**), **modular architecture**, and **full CRUD operations for blogs and user profiles**. The file upload system uses the **Strategy Pattern**, allowing seamless extension to cloud storage providers (S3, Cloudinary) without changing core logic.
 
-## Features
-
-* **Authentication & Authorization**
-
-    * JWT-based authentication with refresh tokens
-    * Role-based access control (USER / ADMIN)
-    * Stateless security with Spring Security
-
-* **User Management**
-
-    * Retrieve authenticated user profile
-    * Update profile details
-    * Change password securely
-    * Upload avatar (image validation included)
-    * File storage designed using **Strategy Pattern** (extensible to S3, Cloudinary, etc.)
-
-* **Blog Management**
-
-    * Create, read, update, and delete blog posts
-    * Ownership enforcement (users manage their own posts)
-    * Admin override capabilities
-
-* **Architecture & Design**
-
-    * Layered architecture (Controller → Service → Repository)
-    * DTO-based request/response separation
-    * Global exception handling
-    * Input validation with `@Valid`
-    * Consistent API response structure
-
-* **System Utilities**
-
-    * Pagination support
-    * Health check endpoint
+With **DTO abstraction, global exception handling, request validation, pagination, and standardized API responses**, this project serves as a solid foundation for real-world applications.
 
 ---
 
-## Tech Stack
+## 🔹 Features
+
+### Authentication & Authorization
+
+* ✅ JWT-based authentication with refresh tokens
+* ✅ Role-based access control (USER / ADMIN)
+* ✅ Stateless security with Spring Security
+
+### User Management
+
+* ✅ Get authenticated user profile
+* ✅ Update profile details
+* ✅ Change password securely
+* ✅ Upload avatar (image validation included)
+* ✅ File storage designed using **Strategy Pattern** (extensible to S3, Cloudinary, etc.)
+
+### Blog Management
+
+* ✅ Create, read, update, and delete blog posts
+* ✅ Ownership enforcement (users manage their own posts)
+* ✅ Admin override capabilities
+
+### Architecture & Design
+
+* ✅ Modular structure: `auth`, `user`, `post`, `config`, `security`, `common`
+* ✅ Layered architecture (Controller → Service → Repository → Domain)
+* ✅ DTO-based request/response separation
+* ✅ Global exception handling
+* ✅ Input validation with `@Valid`
+* ✅ Consistent API response structure
+
+### System Utilities
+
+* ✅ Pagination support
+* ✅ Health check endpoint
+
+---
+
+## 🏗 Tech Stack
 
 * **Backend**: Spring Boot
 * **Database**: PostgreSQL
@@ -51,60 +56,84 @@ A production-grade **RESTful API** built with **Spring Boot**, designed with a s
 
 ---
 
-## Getting Started
+## 🧩 Modular Structure & System Architecture
+
+The project is **modularized**, each module having its own `entity`, `repository`, `service`, and `controller`. There are **common folders** shared across modules.
+
+### Folder Structure
+
+```
+src/main/java/com/example/blog
+├── auth
+│   ├── controller
+│   ├── service
+│   ├── repository
+│   └── domain
+├── user
+├── post
+├── config
+├── security
+└── common
+```
+
+### Architecture Diagram
+
+```mermaid
+flowchart LR
+    Client[Client / Postman] --> |HTTP Requests| Controller
+    Controller --> Service
+    Service --> Repository
+    Repository --> Database[(PostgreSQL)]
+    
+    subgraph Auth Module
+        AuthController --> AuthService --> AuthRepository
+    end
+    
+    subgraph User Module
+        UserController --> UserService --> UserRepository
+    end
+    
+    subgraph Post Module
+        PostController --> PostService --> PostRepository
+    end
+    
+    Common[Shared Utilities & DTOs] --> Service
+```
+
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
 
-* Java 25 or higher
+* Java 25+
 * Maven
 * PostgreSQL
 * Git
 
----
-
 ### Installation
-
-1. **Clone the repository**
 
 ```bash
 git clone https://github.com/IbrahimYemi/spring-boot-blog-api.git
 cd spring-boot-blog-api
 ```
 
----
+### Configuration
 
-2. **Configure environment variables**
+Copy `.env.example` or configure via `application.properties` / `application.yml`.
 
-Create a `.env` file or configure via `application.properties` / `application.yml`:
-
-```properties
-POSTGRES_HOST=localhost
-POSTGRES_PORT=5432
-POSTGRES_DB=blog_db
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=your_password
-
-JWT_SECRET=your_jwt_secret
-```
-
----
-
-3. **Run the application**
+### Running the Application
 
 ```bash
 mvn clean install
 mvn spring-boot:run
 ```
 
-API runs at:
-
-```
-http://localhost:8080
-```
+API runs at: `http://localhost:8080`
 
 ---
 
-## API Endpoints
+## 🔗 API Endpoints
 
 ### Authentication
 
@@ -113,18 +142,14 @@ http://localhost:8080
 | POST   | `/api/auth/register` | Register a new user          |
 | POST   | `/api/auth/login`    | Login and receive JWT tokens |
 
----
-
 ### User Profile
 
-| Method | Endpoint                 | Description                  |
-| ------ | ------------------------ | ---------------------------- |
-| GET    | `/api/users/me`          | Get current user profile     |
-| PUT    | `/api/users/me`          | Update profile details       |
-| PUT    | `/api/users/me/password` | Change user password         |
-| PUT    | `/api/users/me/avatar`   | Upload/update avatar (image) |
-
----
+| Method | Endpoint                 | Description              |
+| ------ | ------------------------ | ------------------------ |
+| GET    | `/api/users/me`          | Get current user profile |
+| PUT    | `/api/users/me`          | Update profile details   |
+| PUT    | `/api/users/me/password` | Change password          |
+| PUT    | `/api/users/me/avatar`   | Upload/update avatar     |
 
 ### Blog Posts
 
@@ -136,8 +161,6 @@ http://localhost:8080
 | PUT    | `/api/posts/{id}` | Update a blog post     |
 | DELETE | `/api/posts/{id}` | Delete a blog post     |
 
----
-
 ### Health Check
 
 | Method | Endpoint           | Description      |
@@ -146,38 +169,26 @@ http://localhost:8080
 
 ---
 
-## File Upload Design (Key Highlight)
+## 📂 File Upload Design
 
-The file upload system is implemented using the **Strategy Pattern**, allowing dynamic selection of storage providers via configuration:
+* Implemented using **Strategy Pattern**
+* Dynamic selection of storage providers: `local`, `S3`, `Cloudinary`
+* Ensures **Open/Closed Principle compliance** and **clean separation of concerns**
 
 ```yaml
 file:
   upload-channel: local
 ```
 
-Supported (extensible) channels:
-
-* Local storage ✅
-* AWS S3 (plug-and-play)
-* Cloudinary (plug-and-play)
-
-This design ensures:
-
-* **Open/Closed Principle compliance**
-* Easy extensibility without modifying core logic
-* Clean separation of concerns
-
 ---
 
-## Response Format
-
-All API responses follow a consistent structure:
+## 📦 Response Format
 
 ```json
 {
   "status": "success | error",
   "message": "Descriptive message",
-  "data": { },
+  "data": {},
   "errors": null,
   "timestamp": "2026-04-01T15:30:00"
 }
@@ -185,12 +196,25 @@ All API responses follow a consistent structure:
 
 ---
 
-## Contributing
+## ✅ Project Completion
 
-Contributions are welcome! Feel free to open issues or submit pull requests.
+* All authentication and authorization flows implemented
+* Full CRUD for blogs and user profiles
+* File upload system ready for local/cloud providers
+* Unit tests and integration tests included
+* Modular architecture with clear separation of concerns
+* Production-ready and extensible
+
+**Postman Collection:** [Click to open](https://documenter.getpostman.com/view/36785788/2sBXiqDTob)
 
 ---
 
-## License
+## 🤝 Contributing
+
+Contributions are welcome! Open issues or submit pull requests.
+
+---
+
+## 📝 License
 
 This project is **MIT licensed**.

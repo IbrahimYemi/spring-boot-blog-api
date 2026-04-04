@@ -1,10 +1,12 @@
 package com.ibrahimyemi.blog_app.common.response;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
 @Builder
 @Data
+@AllArgsConstructor
 public class AuthResponse {
     private String accessToken;
     private String refreshToken;
