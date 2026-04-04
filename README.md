@@ -125,11 +125,18 @@ Copy `.env.example` or configure via `application.properties` / `application.yml
 ### Running the Application
 
 ```bash
-mvn clean install
-mvn spring-boot:run
+./mvnw clean install
+./mvnw spring-boot:run
 ```
 
 API runs at: `http://localhost:8080`
+
+### Running the Test
+
+```bash
+./mvnw clean install
+./mvnw test
+```
 
 ---
 
