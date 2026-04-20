@@ -9,7 +9,6 @@ import com.ibrahimyemi.blog_app.security.exceptions.UnauthorizedException;
 import com.ibrahimyemi.blog_app.user.entity.User;
 import com.ibrahimyemi.blog_app.user.enums.UserRole;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 

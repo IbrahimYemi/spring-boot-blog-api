@@ -34,13 +34,7 @@ public class ApiResponse<T> {
     // ERROR
 
     public static <T> ApiResponse<T> error(String message) {
-        return ApiResponse.<T>builder()
-                .status("error")
-                .message(message)
-                .data(null)
-                .errors(null)
-                .timestamp(LocalDateTime.now())
-                .build();
+        return error(message, null);
     }
 
     public static <T> ApiResponse<T> error(String message, Object errors) {

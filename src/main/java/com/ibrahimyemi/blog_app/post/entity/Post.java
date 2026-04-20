@@ -33,6 +33,7 @@ public class Post {
     private String excerpt;
 
     @Column(nullable = false)
+    @Builder.Default
     private boolean published = false;
 
     @CreationTimestamp
